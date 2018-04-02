@@ -3,6 +3,7 @@
 
 from conans import ConanFile, CMake, tools
 import os
+from shutil import copyfile
 
 
 class GladConan(ConanFile):
@@ -13,7 +14,7 @@ class GladConan(ConanFile):
     homepage = "https://github.com/Dav1dde/glad"
     license = "MIT"
     exports = ["LICENSE.md"]
-    exports_sources = ["CMakeLists.txt", "cmake.patch"]
+    exports_sources = ["CMakeLists.txt", "cmakelists_cd6b84e.patch", "Config.cmake.in"]
     generators = "cmake"
     source_subfolder = "source_subfolder"
     build_subfolder = "build_subfolder"
@@ -46,10 +47,13 @@ class GladConan(ConanFile):
         extracted_dir = self.name + "-" + self.version
 
         #Temporary patch, fixed in glad master (support shared lib).
-        tools.patch(base_path=extracted_dir, patch_file="cmake.patch")
+        tools.patch(base_path=extracted_dir, patch_file="cmakelists_cd6b84e.patch")
+        copyfile(os.path.join(self.source_folder, "Config.cmake.in"), os.path.join(extracted_dir, "Config.cmake.in"))
 
         #Rename to "source_subfolder" is a convention to simplify later steps
         os.rename(extracted_dir, self.source_subfolder)
+
+
 
     def build(self):
         cmake = CMake(self)
