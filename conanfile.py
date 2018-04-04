@@ -66,7 +66,7 @@ class GladConan(ConanFile):
         else:
             cmake.definitions["GLAD_GENERATOR"] = "c-debug"
 
-        cmake.definitions["GLAD_EXPORT"] = True
+        cmake.definitions["GLAD_EXPORT"] = False
         cmake.definitions["GLAD_INSTALL"] = True
         cmake.configure(build_folder=self.build_subfolder)
         cmake.build()
