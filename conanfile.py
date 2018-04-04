@@ -77,6 +77,10 @@ class GladConan(ConanFile):
         cmake.install()
         
     def package_info(self):
+        self.cpp_info.defines.append("HAVE_GLAD")
+        if self.options.shared and self.settings.os == "Windows":
+             self.cpp_info.defines.append("GLAD_GLAPI_EXPORT")
+
         self.cpp_info.libs = tools.collect_libs(self)
         if self.settings.os == "Linux":
             self.cpp_info.libs.append("dl")
