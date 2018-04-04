@@ -8,13 +8,13 @@ from shutil import copyfile
 
 class GladConan(ConanFile):
     name = "glad"
-    version = "0.1.18a0"
+    version = "0.1.18.0+master.20180404"
     description = "Multi-Language GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs."
     url = "https://github.com/bincrafters/conan-glad"
     homepage = "https://github.com/Dav1dde/glad"
     license = "MIT"
     exports = ["LICENSE.md"]
-    exports_sources = ["CMakeLists.txt", "cmakelists_cd6b84e.patch", "Config.cmake.in"]
+    exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
     source_subfolder = "source_subfolder"
     build_subfolder = "build_subfolder"
@@ -42,21 +42,16 @@ class GladConan(ConanFile):
     )
 
     def source(self):
-        source_url = "https://github.com/Dav1dde/glad"
-        tools.get("{0}/archive/v{1}.tar.gz".format(source_url, self.version))
-        extracted_dir = self.name + "-" + self.version
-
-        #Temporary patch, fixed in glad master (support shared lib).
-        tools.patch(base_path=extracted_dir, patch_file="cmakelists_cd6b84e.patch")
-        copyfile(os.path.join(self.source_folder, "Config.cmake.in"), os.path.join(extracted_dir, "Config.cmake.in"))
+        source_url = "https://github.com/Dav1dde/glad/archive/ec01ac515dba0730dca375887bb1bd60bc92013c.zip"
+        tools.get(source_url)
+        extracted_dir = "glad-ec01ac515dba0730dca375887bb1bd60bc92013c"
 
         #Rename to "source_subfolder" is a convention to simplify later steps
         os.rename(extracted_dir, self.source_subfolder)
 
-
-
     def build(self):
         cmake = CMake(self)
+        cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
         if self.settings.compiler != 'Visual Studio':
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
 
