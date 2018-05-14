@@ -10,7 +10,7 @@ class GladConan(ConanFile):
     name = "glad"
     version = "0.1.20"
     description = "Multi-Language GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs."
-    url = "https://github.com/bincrafters/conan-glad"
+    url = "https://github.com/ulricheck/conan-glad"
     homepage = "https://github.com/Dav1dde/glad"
     license = "MIT"
     exports = ["LICENSE.md"]
