@@ -8,7 +8,7 @@ from shutil import copyfile
 
 class GladConan(ConanFile):
     name = "glad"
-    version = "0.1.18.0+master.20180404"
+    version = "0.1.20"
     description = "Multi-Language GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs."
     url = "https://github.com/bincrafters/conan-glad"
     homepage = "https://github.com/Dav1dde/glad"
@@ -42,9 +42,9 @@ class GladConan(ConanFile):
     )
 
     def source(self):
-        source_url = "https://github.com/Dav1dde/glad/archive/ec01ac515dba0730dca375887bb1bd60bc92013c.zip"
+        source_url = "https://github.com/Dav1dde/%s/archive/v%s.zip" % (self.name, self.version)
         tools.get(source_url)
-        extracted_dir = "glad-ec01ac515dba0730dca375887bb1bd60bc92013c"
+        extracted_dir = "glad-%s" % (self.version)
 
         #Rename to "source_subfolder" is a convention to simplify later steps
         os.rename(extracted_dir, self.source_subfolder)
