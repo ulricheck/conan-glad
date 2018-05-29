@@ -9,7 +9,7 @@ environment:
     CONAN_UPLOAD: "https://conan.campar.in.tum.de/api/conan/conan-camposs"
     CONAN_REMOTES: "https://conan.campar.in.tum.de/api/conan/conan-camposs"
     CONAN_UPLOAD: "https://conan.campar.in.tum.de"
-    CONAN_REFERENCE: "glad/0.1.20"
+    CONAN_REFERENCE: "glad/0.1.23"
     CONAN_USERNAME: "camposs"
     CONAN_CHANNEL: "stable"
     CONAN_STABLE_BRANCH_PATTERN: "release/*"
