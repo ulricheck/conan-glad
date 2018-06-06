@@ -41,6 +41,9 @@ class GladConan(ConanFile):
         "no_loader=False"
     )
 
+    def configure(self):
+        del self.settings.compiler.libcxx
+
     def source(self):
         source_url = "https://github.com/Dav1dde/%s/archive/v%s.zip" % (self.name, self.version)
         tools.get(source_url)
@@ -70,9 +73,6 @@ class GladConan(ConanFile):
         cmake.definitions["GLAD_INSTALL"] = True
         cmake.configure(build_folder=self.build_subfolder)
         cmake.build()
-
-    def package_id(self):
-        self.info.settings.compiler.libcxx = "ANY"
 
     def package(self):
         cmake = CMake(self)
