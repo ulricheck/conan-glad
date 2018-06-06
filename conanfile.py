@@ -71,6 +71,9 @@ class GladConan(ConanFile):
         cmake.configure(build_folder=self.build_subfolder)
         cmake.build()
 
+    def package_id(self):
+        self.info.settings.compiler.libcxx = "ANY"
+
     def package(self):
         cmake = CMake(self)
         cmake.configure(build_folder=self.build_subfolder)

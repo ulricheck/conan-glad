@@ -1,12 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-
-from bincrafters import build_template_default
+from conan.packager import ConanMultiPackager
 
 if __name__ == "__main__":
-
-    builder = build_template_default.get_builder()
-
+    builder = ConanMultiPackager()
+    builder.add_common_builds(shared_option_name="glad:shared", pure_c=True)
     builder.run()
