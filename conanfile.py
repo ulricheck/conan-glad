@@ -36,7 +36,7 @@ class GladConan(ConanFile):
         "profile=compatibility",
         "api_type=gl",
         "api_version=3.2",
-        "extensions=",
+        "extensions=None",
         "spec=gl",
         "no_loader=False"
     )
@@ -60,7 +60,8 @@ class GladConan(ConanFile):
 
         cmake.definitions["GLAD_PROFILE"] = self.options.profile
         cmake.definitions["GLAD_API"] = "%s=%s" % (self.options.api_type, self.options.api_version)
-        cmake.definitions["GLAD_EXTENSIONS"] = self.options.extensions
+        if self.options.extensions != 'None':
+            cmake.definitions["GLAD_EXTENSIONS"] = self.options.extensions
         cmake.definitions["GLAD_SPEC"] = self.options.spec
         cmake.definitions["GLAD_NO_LOADER"] = self.options.no_loader
 
