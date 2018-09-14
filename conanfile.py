@@ -8,7 +8,7 @@ from shutil import copyfile
 
 class GladConan(ConanFile):
     name = "glad"
-    version = "0.1.23"
+    version = "0.1.27"
     description = "Multi-Language GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs."
     url = "https://github.com/ulricheck/conan-glad"
     homepage = "https://github.com/Dav1dde/glad"

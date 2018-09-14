@@ -1,6 +1,6 @@
 env:
    global:
-     - CONAN_REFERENCE: "glad/0.1.23"
+     - CONAN_REFERENCE: "glad/0.1.27"
      - CONAN_USERNAME: "camposs"
      - CONAN_LOGIN_USERNAME: "camposs"
      - CONAN_CHANNEL: "stable"
