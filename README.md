@@ -10,14 +10,14 @@
 
 ### Basic setup
 
-    $ conan install glad/0.1.20@camposs/stable
+    $ conan install glad/0.1.27@camposs/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    glad/0.1.20@camposs/stable
+    glad/0.1.27@camposs/stable
 
     [generators]
     txt
@@ -40,7 +40,7 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Upload
 
-    $ conan upload -r camposs glad/0.1.20@camposs/stable
+    $ conan upload -r camposs glad/0.1.27@camposs/stable
 
 ## Glad Options
 
@@ -67,7 +67,7 @@ A conanfile.txt example.
 
 ```
 [requires]
-glad/0.1.20@camposs/stable
+glad/0.1.27@camposs/stable
 
 ...
 
