@@ -52,7 +52,7 @@ class GladConan(ConanFile):
         #Rename to "source_subfolder" is a convention to simplify later steps
         os.rename(extracted_dir, self.source_subfolder)
 
-    def build(self):
+    def configure_cmake(self):
         cmake = CMake(self)
         cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
         if self.settings.compiler != 'Visual Studio':
@@ -62,6 +62,7 @@ class GladConan(ConanFile):
         cmake.definitions["GLAD_API"] = "%s=%s" % (self.options.api_type, self.options.api_version)
         if self.options.extensions:
             cmake.definitions["GLAD_EXTENSIONS"] = self.options.extensions
+
         cmake.definitions["GLAD_SPEC"] = self.options.spec
         cmake.definitions["GLAD_NO_LOADER"] = self.options.no_loader
 
@@ -70,14 +71,18 @@ class GladConan(ConanFile):
         else:
             cmake.definitions["GLAD_GENERATOR"] = "c-debug"
 
-        cmake.definitions["GLAD_EXPORT"] = False
+        cmake.definitions["GLAD_EXPORT"] = True
         cmake.definitions["GLAD_INSTALL"] = True
         cmake.configure(build_folder=self.build_subfolder)
+        return cmake
+
+
+    def build(self):
+        cmake = self.configure_cmake()
         cmake.build()
 
     def package(self):
-        cmake = CMake(self)
-        cmake.configure(build_folder=self.build_subfolder)
+        cmake = self.configure_cmake()
         cmake.install()
         
     def package_info(self):
